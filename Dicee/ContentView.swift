@@ -5,6 +5,9 @@ import SwiftUI
 
 struct ContentView: View {
     
+    @State private var numberOnDice1: Int = 1
+    @State private var numberOnDice2: Int = 2
+    
     var body: some View {
         
         ZStack {
@@ -21,8 +24,8 @@ struct ContentView: View {
                 Spacer()
                 
                 HStack {
-                    DiceView(diceNumber : 1)
-                    DiceView(diceNumber : 2)
+                    DiceView(diceNumber : numberOnDice1)
+                    DiceView(diceNumber : numberOnDice2)
                 }
                 .padding(.horizontal)
                 
@@ -30,13 +33,16 @@ struct ContentView: View {
                 
                 Button {
                     print("The button is tapped .")
+                    
+                    numberOnDice1 = Int.random(in : 1...6)
+                    numberOnDice2 = Int.random(in : 1...6)
                 } label : {
                     Circle()
                         .foregroundColor(.orange)
-                        .frame(width : 250.0 ,
-                               height : 250.0)
+                        .frame(width : 200.0 ,
+                               height : 200.0)
                         .overlay(Text("Roll the Dice")
-                                    .font(.system(size: 40 ,
+                                    .font(.system(size: 30 ,
                                                   weight : .semibold))
                                     .foregroundColor(.white))
                 }
